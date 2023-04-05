@@ -1,0 +1,71 @@
+.shop .product-card {
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    color:#fff;
+    font-weight: 300;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+    }
+    
+    .shop .product-card:hover .shop-background {
+    transform: scale(1.15) translateZ(0);
+    background-size: 300px;
+    }
+    
+    .shop-grid:hover > .product-card:not(:hover) {
+    transform: scale(0.9);
+    }
+    
+    .shop-grid:hover > .shop:not(:hover) .shop-background,
+    .shop-grid:hover > .shop:not(:hover) .shop-category {
+    filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+    }
+    
+    .shop .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    }
+    
+    .shop .product-card h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    }
+    
+    .shop .product-card p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    }
+    
+    .shop .product-card button {
+    background-color: #5cb85c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    }
+    
+    .shop .product-card button:hover {
+    background-color: #449d44;
+    }
+    
+    .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    }
+    
+    .product-card .delete-button {
+    margin-top: 10px;
+    }

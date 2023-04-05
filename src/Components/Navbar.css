@@ -1,0 +1,66 @@
+.skew-menu {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;  
+    height: 80px;
+  }
+  
+  .skew-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .skew-menu li {
+    text-transform: uppercase;
+    font-weight: bold;
+    border-right: 1px solid #eee;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s linear;
+  }
+  
+  .skew-menu li:first-child {
+    border-radius: 7px 0 0 7px;
+  }
+  
+  .skew-menu li:last-child {
+    border-right: none;
+    border-radius: 0 7px 7px 0;
+  }
+  
+  .skew-menu li:hover {
+    background-color: #eee;
+  }
+  
+  .skew-menu a {
+    display: block;
+    padding: 1em 2em;
+    color: #555;
+    text-decoration: none;
+  }
+  
+  .skew-menu .btn-signup {
+    background-color:darkgray;
+    color: #fff;
+    border-radius: 7px;
+    padding: 0.5em 1em;
+    margin-left: 1em;
+  }
+  
+  .skew-menu .btn-login {
+    background-color: #eee;
+    color: #555;
+    border-radius: 7px;
+    padding: 0.5em 1em;
+    margin-left: 1em;
+  }
+  
+  .skew-menu a:hover {
+    color: tomato;
+  }
+  
+  .skew-menu a:focus {
+    outline: none;
+  }
+  
