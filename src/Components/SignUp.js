@@ -69,13 +69,17 @@ function SignUp({ setUser }) {
       return;
     }
   
+    // include CSRF token in headers
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    
     // proceed with signup if all fields are filled in
     fetch("https://carrental-1n1b.onrender.com/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken // add CSRF token to headers
       },
-      body: JSON.stringify({ username, email, password  }),
+      body: JSON.stringify({ username, email, password }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => {
@@ -87,7 +91,7 @@ function SignUp({ setUser }) {
       }
     });
   }
-  
+    
   
 
   return (
