@@ -35,7 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home user={user} />} />
           <Route path="/addcars" element={<AddCars />} />
-          <Route path="/signup" element={<SignUp setUser={setUser} />} />
+          <Route path="/signup" element={<SignUp setUser={setUser} csrfToken={csrfToken} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/ReviewForm" element={<ReviewForm/>}/>  
           <Route path="/reviews" element={<ReviewForm carRentalId="123" user={user} />} />
