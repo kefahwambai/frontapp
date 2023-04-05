@@ -1,6 +1,7 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./SignUp.css"
+import "./SignUp.css";
 
 function SignUp({ setUser }) {
   const [username, setUsername] = useState("");
@@ -11,14 +12,14 @@ function SignUp({ setUser }) {
   const navigate = useNavigate();
 
   const getIndicator = (password) => {
-    let strengthValue = {
+    const strengthValue = {
       upper: false,
       lower: false,
       numbers: false,
     };
 
     for (let index = 0; index < password.length; index++) {
-      let char = password.charCodeAt(index);
+      const char = password.charCodeAt(index);
       if (!strengthValue.upper && char >= 65 && char <= 90) {
         strengthValue.upper = true;
       } else if (!strengthValue.numbers && char >= 48 && char <= 57) {
@@ -48,50 +49,58 @@ function SignUp({ setUser }) {
 
   const passwordStrength = getIndicator(password);
 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // check if any fields are missing
     const missingFields = [];
-    if (!username) {
-      missingFields.push("username");
+    if (!username.trim()) {
+      missingFields.push("Username");
     }
-    if (!email) {
-      missingFields.push("email");
+    if (!email.trim()) {
+      missingFields.push("Email");
     }
-    if (!password) {
-      missingFields.push("password");
+    if (!password.trim()) {
+      missingFields.push("Password");
     }
-        
+
     // show error message if any fields are missing
     if (missingFields.length > 0) {
       setSignupError(`Please fill in the following fields: ${missingFields.join(", ")}`);
       return;
     }
-  
+
+    // check if the password and password confirmation match
+    if (password !== passwordConfirmation) {
+      setSignupError("Passwords do not match.");
+      return;
+    }
+
     // include CSRF token in headers
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    
-    // proceed with signup if all fields are filled in
-    fetch("https://carrental-1n1b.onrender.com/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken // add CSRF token to headers
-      },
-      body: JSON.stringify({ username, email, password }),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((user) => {
-          setUser(user);
-          navigate("/");
-        });
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+
+    // proceed with signup if all fields are filled in and passwords match
+    try {
+      const response = await fetch("https://carrental-1n1b.onrender.com/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken, // add CSRF token to headers
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+
+      if (response.ok) {
+        const user = await response.json();
+        setUser(user);
+        navigate("/");
       } else {
         setSignupError("Signup failed. Please try again.");
       }
-    });
-  }
-    
+    } catch (error) {
+      setSignupError("Signup failed. Please try again.");
+    }
+  };
   
 
   return (

@@ -17,6 +17,7 @@ import TermsOfService from './Components/TermsOfService';
 
 function App() {
   const [user, setUser] = useState(null);
+  const csrfToken = ""; 
 
   useEffect(() => {
     // auto-login
