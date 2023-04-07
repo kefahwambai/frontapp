@@ -75,7 +75,7 @@ function SignUp({ setUser }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, email, password  }),
+      body: JSON.stringify({ username, email, password, passwordConfirmation }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => {
